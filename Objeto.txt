@@ -1,0 +1,19 @@
+Lista_senales (senal)
+
+senal:
+- nombre 
+- t
+- A
+- datos por nivel
+- lista_de_datos (datos)
+    - insertar 
+    - recorrer
+- lista_de_patrones (datos)
+    - insertar 
+    - recorrer
+
+    
+dato:
+- t
+- A
+- Numero
