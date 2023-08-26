@@ -1,9 +1,9 @@
 from nodo_senal import nodo_senal
 
-class lista_senales:
+class lista_senal:
     def __init__(self):
         self.primero = None
-        self.contador_senales = 0
+        self.contador_senal = 0
     
     def insertar_datos(self, senal):
         if self.primero is None:

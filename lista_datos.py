@@ -5,10 +5,10 @@ class lista_datos:
         self.primero = None
         self.contador_datos = 0
 
-    def insertar_d(self, dato):
+    def insertar_dato(self, dato):
         #Si el primer nodo es nulo
         if self.primero is None:
-            self.primero = nodo_dato(datos = dato)
+            self.primero = nodo_dato(dato = dato)
             self.contador_datos += 1
             return
         #Temporal para recorrer nuestra lista
