@@ -1,10 +1,11 @@
+
+
 Lista_senales (senal)
 
 senal:
 - nombre 
 - t
 - A
-- datos por nivel
 - lista_de_datos (datos)
     - insertar 
     - recorrer
@@ -17,3 +18,11 @@ dato:
 - t
 - A
 - Numero
+
+Patron
+- t
+- cadena Patron
+
+Grupo
+- el grupo en su totalidad
+- el cadena_grupo

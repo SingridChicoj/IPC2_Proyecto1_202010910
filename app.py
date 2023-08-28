@@ -38,7 +38,7 @@ for senal_temporal in raiz.findall('senal'):
         #Lista de datos
         lista_datos_temporal.insertar_dato(nuevod)
         #Insercion en lista de patrones datos
-        if numero_dato != 0:
+        if numero_dato != "0":
             nuevod = dato(int(tiempo_dato), int(ampli_dato), 1)
             lista_datos_patrones_temporal.insertar_dato(nuevod)
         else:
@@ -46,4 +46,6 @@ for senal_temporal in raiz.findall('senal'):
             lista_datos_patrones_temporal.insertar_dato(nuevod)
     lista_senales_temporal.insertar_datos(senal(nombre_senal, t_senal, A_senal,
                                                 lista_datos_temporal, lista_datos_patrones_temporal))
-lista_senales_temporal.recorrer_imprimir()    
+lista_senales_temporal.recorrer_imprimir()
+#lista_senales_temporal.grafica_listaO()
+lista_senales_temporal.grafica_listaP()
