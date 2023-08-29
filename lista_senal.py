@@ -1,4 +1,6 @@
 from nodo_senal import nodo_senal
+from grupo import grupo
+
 
 class lista_senal:
     def __init__(self):
@@ -41,3 +43,28 @@ class lista_senal:
         while actual != None:
             actual.senal.Lpatrones.grafica(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
             actual = actual.siguiente
+
+    def calcular_patrones(self, nombre_senal):
+        actual = self.primero
+        while actual != None:
+            if actual.senal.nombre == nombre_senal:
+                actual.senal.PatronesTiempo = actual.senal.Lpatrones.devolver_patrones_tiempo(actual.senal.PatronesTiempo)
+                actual.senal.PatronesTiempo.recorrer_imprimir()
+                lista_patrones_temporal = actual.senal.PatronesTiempo
+                grupos_sin_analizar = lista_patrones_temporal.coincidencias()
+                print(grupos_sin_analizar)
+                recolector_texto = ""
+                for digito in grupos_sin_analizar:
+                    if digito.isdigit() or digito == ",":
+                        recolector_texto += digito
+                    elif digito == "-" and recolector_texto != "":
+                        Cgrupo = actual.senal.Ldatos.devolver_cadena_grupo(recolector_texto)
+                        actual.senal.Lgrupo.insertar_dato(grupo = grupo(recolector_texto,Cgrupo))
+                        recolector_texto = ""
+                    else:
+                        recolector_texto = ""
+                
+                actual.senal.Lgrupo.recorrer_imprimir()
+                return
+            actual = actual.siguiente
+        print ("No se encontró la carcel")

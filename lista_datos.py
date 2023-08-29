@@ -1,4 +1,5 @@
 from nodo_dato import nodo_dato
+from patron import patron
 
 #Importaciones
 import sys
@@ -68,3 +69,44 @@ class lista_datos:
         os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
         os.system('dot -Tpng bb.dot -o grafo.png')
         print("Terminado")
+
+    def devolver_patrones_tiempo(self, PatronesTiempo):
+        actual = self.primero
+        salto_fila = actual.dato.time
+        fila_inicial = False
+        recoletor_patron = ""
+        while actual != None:
+            if salto_fila != actual.dato.time:
+                fila_inicial = False
+                PatronesTiempo.insertar_dato(patron(salto_fila, recoletor_patron))
+                recoletor_patron = ""
+                salto_fila = actual.dato.time
+            if fila_inicial == False:
+                fila_inicial == True
+                recoletor_patron += str(actual.dato.numero) + "-"
+            else:
+                recoletor_patron += str(actual.dato.numero) + "-"
+            actual = actual.siguiente
+        PatronesTiempo.insertar_dato(patron(salto_fila, recoletor_patron))
+        return PatronesTiempo
+
+
+
+    def devolver_cadena_grupo(self, grupo):
+        string_resultado = ""
+        string_temporal = ""
+        recolector_texto = ""
+        for digito in grupo:
+            if digito.isdigit():
+                recolector_texto += digito
+            else:
+                string_temporal = ""
+                #Recorremos la lista y recuperamos los valores para el grupo
+                actual = self.primero
+                while actual != None:
+                    if actual.dato.time == int(recolector_texto):
+                        string_temporal += actual.dato.numero + ","
+                    actual = actual.siguiente
+                string_resultado += string_temporal + "\n"
+                recolector_texto = ""
+        return string_resultado

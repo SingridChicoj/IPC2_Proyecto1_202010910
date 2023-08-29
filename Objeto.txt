@@ -26,3 +26,8 @@ Patron
 Grupo
 - el grupo en su totalidad
 - el cadena_grupo
+
+Senal -> Lista Original
+- Mi lista senal patrones
+- Mi lista patrones (0 - 1 - 1 - 1)
+- Mi lista grupos (1, 2 ..... 3, 4)

@@ -8,6 +8,8 @@ from dato import dato
 #Lista
 from lista_datos import lista_datos
 from lista_senal import lista_senal
+from lista_patrones import lista_patrones
+from lista_grupos import lista_grupos
 
 #Abrir xml
 ruta = askopenfilename()
@@ -30,6 +32,9 @@ for senal_temporal in raiz.findall('senal'):
     #Inicializar nuestras listas
     lista_datos_temporal = lista_datos()
     lista_datos_patrones_temporal = lista_datos()
+    
+    lista_patrones_temporal = lista_patrones()
+    lista_grupos_temporal = lista_grupos()
     for dato_senal in senal_temporal.findall('dato'):
         tiempo_dato = dato_senal.get('t')
         ampli_dato = dato_senal.get('A')
@@ -45,7 +50,8 @@ for senal_temporal in raiz.findall('senal'):
             nuevod = dato(int(tiempo_dato), int(ampli_dato), 0)
             lista_datos_patrones_temporal.insertar_dato(nuevod)
     lista_senales_temporal.insertar_datos(senal(nombre_senal, t_senal, A_senal,
-                                                lista_datos_temporal, lista_datos_patrones_temporal))
-lista_senales_temporal.recorrer_imprimir()
+                                                lista_datos_temporal, lista_datos_patrones_temporal, lista_patrones_temporal, lista_grupos_temporal))
+#lista_senales_temporal.recorrer_imprimir()
 #lista_senales_temporal.grafica_listaO()
-lista_senales_temporal.grafica_listaP()
+#lista_senales_temporal.grafica_listaP()
+lista_senales_temporal.calcular_patrones("Prueba1")
