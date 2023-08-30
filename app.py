@@ -28,7 +28,7 @@ for senal_temporal in raiz.findall('senal'):
     nombre_senal = senal_temporal.get('nombre')
     t_senal = senal_temporal.get('t')
     A_senal = senal_temporal.get('A')
-    print(nombre_senal, t_senal, A_senal)
+    #print(nombre_senal, t_senal, A_senal)
     #Inicializar nuestras listas
     lista_datos_temporal = lista_datos()
     lista_datos_patrones_temporal = lista_datos()
@@ -41,17 +41,17 @@ for senal_temporal in raiz.findall('senal'):
         numero_dato = dato_senal.text
         nuevod = dato(int(tiempo_dato), int(ampli_dato), numero_dato)
         #Lista de datos
-        lista_datos_temporal.insertar_dato(nuevod)
+        lista_datos_temporal.insertar_dato_ordenado(nuevod)
         #Insercion en lista de patrones datos
         if numero_dato != "0":
             nuevod = dato(int(tiempo_dato), int(ampli_dato), 1)
-            lista_datos_patrones_temporal.insertar_dato(nuevod)
+            lista_datos_patrones_temporal.insertar_dato_ordenado(nuevod)
         else:
             nuevod = dato(int(tiempo_dato), int(ampli_dato), 0)
-            lista_datos_patrones_temporal.insertar_dato(nuevod)
-    lista_senales_temporal.insertar_datos(senal(nombre_senal, t_senal, A_senal,
+            lista_datos_patrones_temporal.insertar_dato_ordenado(nuevod)
+    lista_senales_temporal.insertar_dato(senal(nombre_senal, t_senal, A_senal,
                                                 lista_datos_temporal, lista_datos_patrones_temporal, lista_patrones_temporal, lista_grupos_temporal))
 #lista_senales_temporal.recorrer_imprimir()
 #lista_senales_temporal.grafica_listaO()
-#lista_senales_temporal.grafica_listaP()
+lista_senales_temporal.grafica_listaP()
 lista_senales_temporal.calcular_patrones("Prueba1")

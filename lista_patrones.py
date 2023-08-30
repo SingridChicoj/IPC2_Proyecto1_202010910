@@ -52,19 +52,19 @@ class lista_patrones():
             string_temporal = ""
             tiempo_string = ""
             while actual:
+                #print(actual.patron.cadena_patron)
                 if actual.patron.cadena_patron == self.primero.patron.cadena_patron:
                     tiempo_string += str(actual.patron.tiempo) + ","
                 actual = actual.siguiente
             recolector_texto = ""
-            
             for digito in tiempo_string:
-                if digito .isdigit():
+                if digito.isdigit():
                     recolector_texto += digito
                 else:
                     if recolector_texto != "":
                         self.eliminar(int(recolector_texto))
+                        recolector_texto = ""
                     else:
                         recolector_texto = ""
-
-            resultado += string_temporal + "--"
+            resultado += tiempo_string + "--"
         return resultado

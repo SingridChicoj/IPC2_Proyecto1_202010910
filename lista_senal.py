@@ -7,7 +7,7 @@ class lista_senal:
         self.primero = None
         self.contador_senal = 0
     
-    def insertar_datos(self, senal):
+    def insertar_dato(self, senal):
         if self.primero is None:
             self.primero = nodo_senal(senal= senal)
             self.contador_senal += 1
@@ -58,12 +58,11 @@ class lista_senal:
                     if digito.isdigit() or digito == ",":
                         recolector_texto += digito
                     elif digito == "-" and recolector_texto != "":
-                        Cgrupo = actual.senal.Ldatos.devolver_cadena_grupo(recolector_texto)
-                        actual.senal.Lgrupo.insertar_dato(grupo = grupo(recolector_texto,Cgrupo))
+                        cadena_grupo = actual.senal.Ldatos.devolver_cadena_grupo(recolector_texto)
+                        actual.senal.Lgrupo.insertar_dato(grupo = grupo(recolector_texto,cadena_grupo))
                         recolector_texto = ""
                     else:
                         recolector_texto = ""
-                
                 actual.senal.Lgrupo.recorrer_imprimir()
                 return
             actual = actual.siguiente

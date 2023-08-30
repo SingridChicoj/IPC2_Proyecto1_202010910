@@ -25,6 +25,25 @@ class lista_datos:
         actual.siguiente = nodo_dato(dato = dato)
         self.contador_datos += 1
 
+    def insertar_dato_ordenado(self, dato):
+        nuevo_dato = nodo_dato(dato = dato)
+        self.contador_datos += 1
+        if self.primero is None:
+            self.primero = nuevo_dato
+            return
+        if dato.time < self.primero.dato.time or (
+            dato.time == self.primero.dato.time and dato.amplitude <= self.primero.dato.amplitude):
+            nuevo_dato.siguiente = self.primero
+            self.primero = nuevo_dato
+            return
+        actual = self.primero
+        while actual.siguiente is not None and (
+                dato.time > actual.siguiente.dato.time or(
+                    dato.time == actual.siguiente.dato.time and dato.amplitude > actual.siguiente.dato.amplitude)):
+            actual = actual.siguiente
+        nuevo_dato.siguiente = actual.siguiente
+        actual.siguiente = nuevo_dato
+
     def recorrer_imprimir(self):
         print("--------------------------------------------")
         actual = self.primero
