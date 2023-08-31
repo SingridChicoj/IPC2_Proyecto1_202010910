@@ -1,5 +1,6 @@
 from nodo_patron import nodo_patron
 
+
 class lista_patrones():
     def __init__(self):
         self.primero = None
@@ -7,26 +8,25 @@ class lista_patrones():
 
     def insertar_dato(self, patron):
         if self.primero is None:
-            self.primero = nodo_patron(patron = patron)
+            self.primero = nodo_patron(patron=patron)
             self.contadorP += 1
             return
         actual = self.primero
         while actual.siguiente:
             actual = actual.siguiente
-        actual.siguiente = nodo_patron(patron = patron)
+        actual.siguiente = nodo_patron(patron=patron)
         self.contadorP += 1
 
     def recorrer_imprimir(self):
         print("Total de patrones almacenadas: ", self.contadorP)
         print("")
-        print("")
-        print("")
-        print("------------------------------------------------")
+        print("------------------------------------------------------")
         actual = self.primero
         while actual != None:
-            print("Tiempo: ", actual.patron.tiempo, "Cadena Patron: ", actual.patron.cadena_patron)
+            print("Tiempo: ", actual.patron.tiempo,
+                  "Cadena Patron: ", actual.patron.cadena_patron)
             actual = actual.siguiente
-        print("------------------------------------------------")
+        print("------------------------------------------------------")
 
     def eliminar(self, tiempo):
         actual = self.primero
@@ -45,14 +45,14 @@ class lista_patrones():
         print("")
         print("")
         print("")
-        resultado = "" #Guarda mis coincidencias
-        #Mientras la lista tenga algo y no este vacia
+        resultado = ""  # Guarda mis coincidencias
+        # Mientras la lista tenga algo y no este vacia
         while self.primero:
             actual = self.primero
             string_temporal = ""
             tiempo_string = ""
             while actual:
-                #print(actual.patron.cadena_patron)
+                # print(actual.patron.cadena_patron)
                 if actual.patron.cadena_patron == self.primero.patron.cadena_patron:
                     tiempo_string += str(actual.patron.tiempo) + ","
                 actual = actual.siguiente

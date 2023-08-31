@@ -19,11 +19,9 @@ class lista_grupos():
     def recorrer_imprimir(self):
         print("Total de grupos almacenadas: ", self.contadorG)
         print("")
-        print("")
-        print("")
-        print("------------------------------------------------")
+        print("------------------------------------------------------")
         actual = self.primero
         while actual != None:
             print("Grupo: ", actual.grupo.el_grupo, "Cadena grupo: ", actual.grupo.cadena_grupo)
             actual = actual.siguiente
-        print("------------------------------------------------")
+        print("------------------------------------------------------")

@@ -44,13 +44,14 @@ class lista_datos:
         nuevo_dato.siguiente = actual.siguiente
         actual.siguiente = nuevo_dato
 
+    
     def recorrer_imprimir(self):
-        print("--------------------------------------------")
+        print("------------------------------------------------------")
         actual = self.primero
         while actual != None:
             print("T: ", actual.dato.time, "A: ", actual.dato.amplitude, "Numero: ", actual.dato.numero)
             actual = actual.siguiente
-        print("--------------------------------------------")
+        print("------------------------------------------------------")
 
     def grafica(self, nombre_senal, tiempo, amplitud):
         f = open('bb.dot', 'w')
@@ -108,8 +109,6 @@ class lista_datos:
             actual = actual.siguiente
         PatronesTiempo.insertar_dato(patron(salto_fila, recoletor_patron))
         return PatronesTiempo
-
-
 
     def devolver_cadena_grupo(self, grupo):
         string_resultado = ""
