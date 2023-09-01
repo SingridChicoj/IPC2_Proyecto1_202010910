@@ -53,11 +53,11 @@ class lista_senal:
             actual.senal.Lpatrones.grafica(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
             actual = actual.siguiente
     
-    '''def grafica_listaR(self):
+    def grafica_listaR(self):
         actual = self.primero
         while actual != None:
-            actual.senal.Lgrupo.grafica(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
-            actual = actual.siguiente'''
+            actual.senal.Lgrupo.grafica(actual.senal.nombre, str(actual.senal.Lgrupo), str(actual.senal.Lgrupo))
+            actual = actual.siguiente
 
     def calcular_patrones(self, nombre_senal):
         actual = self.primero
@@ -67,14 +67,19 @@ class lista_senal:
                 #actual.senal.PatronesTiempo.recorrer_imprimir()
                 lista_patrones_temporal = actual.senal.PatronesTiempo
                 grupos_sin_analizar = lista_patrones_temporal.coincidencias()
-                #print(grupos_sin_analizar)
+                print(grupos_sin_analizar)
                 recolector_texto = ""
+                ngrupo = 0
                 for digito in grupos_sin_analizar:
                     if digito.isdigit() or digito == ",":
                         recolector_texto += digito
                     elif digito == "-" and recolector_texto != "":
+                        ngrupo += 1
                         cadena_grupo = actual.senal.Ldatos.devolver_cadena_grupo(recolector_texto)
-                        actual.senal.Lgrupo.insertar_dato(grupo = grupo(recolector_texto,cadena_grupo))
+                        actual.senal.Lgrupo.insertar_dato(grupo = grupo(recolector_texto,cadena_grupo, ngrupo))
+                        '''for datoC in cadena_grupo:
+                            for dato in datoC:
+                                if dato  == "\n":'''
                         recolector_texto = ""
                     else:
                         recolector_texto = ""
@@ -82,23 +87,26 @@ class lista_senal:
                 return
             actual = actual.siguiente
         print ("No se encontró la carcel")
+        
 
     def escritura_xml(self):
-        mis_senales = ET.Element("senalesReducidad")
-        lista_senal = ET.SubElement(mis_senales, "senal")
+        mis_senales = ET.Element("senalesReducidas")
+        lista_senal = ET.SubElement(mis_senales,'senal')
         actual = self.primero
         while actual != None:
             nombre = ET.SubElement(lista_senal, "nombre")
             nombre.text = actual.senal.nombre
             amplitud = ET.SubElement(lista_senal, "A")
             amplitud.text = str(actual.senal.amplitud)
-            actualLpatrones = actual.senal.Lpatrones.primero
-            num_grupo = ET.SubElement(lista_senal, "grupo")
-            num_grupo.text = str(actual.senal.Lgrupo)
-            while actualLpatrones != None:
-                dato = ET.SubElement(num_grupo, "listaPatrones")
-                dato.text = str(actualLpatrones.dato.numero)
-                actualLpatrones = actualLpatrones.siguiente
+            actualLgrupo = actual.senal.Lgrupo.primero
+            while actualLgrupo != None:
+                num_grupo = ET.SubElement(lista_senal, "grupo " + "grupo = " + str(actualLgrupo.grupo.ngrupo))
+                grupos = ET.SubElement(num_grupo, "tiempos")
+                grupos.text = str(actualLgrupo.grupo.el_grupo)
+                dgrupos = ET.SubElement(num_grupo, "datosGrupo")
+                dato = ET.SubElement(dgrupos, "datos")
+                dato.text = str(actualLgrupo.grupo.cadena_grupo)
+                actualLgrupo = actualLgrupo.siguiente
             actual = actual.siguiente
 
             #General xml
@@ -106,8 +114,9 @@ class lista_senal:
             my_data = str(my_data)
             self.pretty(mis_senales)
             arbol_xml = ET.ElementTree(mis_senales)
-            ruta = input("Escribir una ruta especifica: ")
-            arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
+            #ruta = input("Escribir una ruta especifica: ")
+            #arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
+            arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
     
     def pretty(self, element, indent = '    '):
         cola = [(0, element)]

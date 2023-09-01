@@ -125,6 +125,7 @@ class lista_datos:
                     if actual.dato.time == int(recolector_texto):
                         string_temporal += actual.dato.numero + ","
                     actual = actual.siguiente
-                string_resultado += string_temporal + "\n"
+                string_resultado += string_temporal
                 recolector_texto = ""
         return string_resultado
+    

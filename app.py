@@ -129,9 +129,11 @@ def menu():
                 entrada = ""
                 menu()
 
-menu()
+#menu()
+cargar()
+#lista_senales_temporal.recorrer_imprimir_patrones()
 #lista_senales_temporal.grafica_listaO()
 #lista_senales_temporal.grafica_listaP()
-#lista_senales_temporal.calcular_patrones("Prueba1")
-#lista_senales_temporal.escritura_xml()
+lista_senales_temporal.calcular_patrones("Señal Gordita")
+lista_senales_temporal.escritura_xml()
 #lista_senales_temporal.grafica_listaR()

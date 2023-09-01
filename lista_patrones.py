@@ -49,10 +49,9 @@ class lista_patrones():
         # Mientras la lista tenga algo y no este vacia
         while self.primero:
             actual = self.primero
-            string_temporal = ""
             tiempo_string = ""
             while actual:
-                # print(actual.patron.cadena_patron)
+                #print(actual.patron.cadena_patron)
                 if actual.patron.cadena_patron == self.primero.patron.cadena_patron:
                     tiempo_string += str(actual.patron.tiempo) + ","
                 actual = actual.siguiente

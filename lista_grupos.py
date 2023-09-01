@@ -1,5 +1,9 @@
 from nodo_grupo import nodo_grupo
 
+#Importaciones
+import sys
+import os
+
 class lista_grupos():
     def __init__(self):
         self.primero = None
@@ -22,6 +26,8 @@ class lista_grupos():
         print("------------------------------------------------------")
         actual = self.primero
         while actual != None:
-            print("Grupo: ", actual.grupo.el_grupo, "Cadena grupo: ", actual.grupo.cadena_grupo)
+            print("Numero de Grupo: ", actual.grupo.ngrupo, "Grupo: ", actual.grupo.el_grupo, "Cadena grupo: ", actual.grupo.cadena_grupo)
+            print("Numeros: ", actual.grupo.cadena_grupo)
             actual = actual.siguiente
         print("------------------------------------------------------")
+    
