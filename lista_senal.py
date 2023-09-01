@@ -56,7 +56,9 @@ class lista_senal:
     def grafica_listaR(self):
         actual = self.primero
         while actual != None:
-            actual.senal.Lgrupo.grafica(actual.senal.nombre, str(actual.senal.Lgrupo), str(actual.senal.Lgrupo))
+            actualLgrupo = actual.senal.Lgrupo.primero
+            while actualLgrupo != None:
+                actualLgrupo.grupo.grafica(actualLgrupo.grupo.ngrupo, str(actualLgrupo.grupo.el_grupo), str(actualLgrupo.grupo.cadena_grupo))
             actual = actual.siguiente
 
     def calcular_patrones(self, nombre_senal):

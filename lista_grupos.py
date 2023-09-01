@@ -31,3 +31,39 @@ class lista_grupos():
             actual = actual.siguiente
         print("------------------------------------------------------")
     
+    def grafica(self, nombre_senal, elgrupo, cad_grupo):
+        f = open('bb.dot', 'w')
+        #Estilo del grafo
+        text = """
+                digraph G {"tiempo = """ + elgrupo + """", "Amplitud = """ + cad_grupo +""""->" """+ nombre_senal+""""
+                bgcolor="#3990C4" style="filled" subgraph cluster1{fillcolor = "blue:red" style="filled"
+                node [shape=circle fillcolor="gold:brown" style="radial" gradientangle=180]
+                a0 [ label=<
+                <TABLE border="0" cellspacing="10" cellpadding="10" 
+                style="rounded" bgcolor="blue:red" gradientangle="315">\n"""
+        actual = self.primero
+        salto_linea_fila = actual.grupo.el_grupo #Inicia en 1
+        fila_inicial = False
+        while actual != None:
+            #Si mi fila actual es diferente a la que viene
+            if salto_linea_fila != actual.grupo.el_grupo:
+                salto_linea_fila = actual.grupo.el_grupo
+                fila_inicial = False
+                #Cerramos la fila
+                text += """</TR>\n"""
+            if fila_inicial == False: 
+                fila_inicial = True
+                #Abrir la fila
+                text += """<TR>"""
+                text += """<TD border = "3" bgcolor="pink"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
+            else: 
+                text += """<TD border = "3" bgcolor="gray"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
+            actual = actual.siguiente
+        text += """</TR></TABLE>>];
+                }
+                }\n"""
+        f.write(text) 
+        f.close()
+        os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
+        os.system('dot -Tpng bb.dot -o grafo.png')
+        print("Terminado")
