@@ -93,16 +93,12 @@ class lista_senal:
 
     def escritura_xml(self):
         mis_senales = ET.Element("senalesReducidas")
-        lista_senal = ET.SubElement(mis_senales,'senal')
         actual = self.primero
         while actual != None:
-            nombre = ET.SubElement(lista_senal, "nombre")
-            nombre.text = actual.senal.nombre
-            amplitud = ET.SubElement(lista_senal, "A")
-            amplitud.text = str(actual.senal.amplitud)
+            lista_senal = ET.SubElement(mis_senales,"senal " + " nombre="+actual.senal.nombre+"   A="+str(actual.senal.amplitud))
             actualLgrupo = actual.senal.Lgrupo.primero
             while actualLgrupo != None:
-                num_grupo = ET.SubElement(lista_senal, "grupo " + "grupo = " + str(actualLgrupo.grupo.ngrupo))
+                num_grupo = ET.SubElement(lista_senal, "grupo " + "grupo=" + str(actualLgrupo.grupo.ngrupo))
                 grupos = ET.SubElement(num_grupo, "tiempos")
                 grupos.text = str(actualLgrupo.grupo.el_grupo)
                 dgrupos = ET.SubElement(num_grupo, "datosGrupo")
