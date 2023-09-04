@@ -129,7 +129,7 @@ def menu():
                 entrada = ""
                 menu()
 
-#menu()
+menu()
 cargar()
 #lista_senales_temporal.recorrer_imprimir_patrones()
 #lista_senales_temporal.grafica_listaO()
