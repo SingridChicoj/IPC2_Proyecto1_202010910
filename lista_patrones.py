@@ -17,6 +17,16 @@ class lista_patrones():
         actual.siguiente = nodo_patron(patron=patron)
         self.contadorP += 1
 
+    def clear(self):
+        if self.primero is not None:
+            self.primero = None
+            return
+        actual = self.primero
+        while actual is None:
+            actual = None
+        self.contadorP = 0
+    
+
     def recorrer_imprimir(self):
         print("Total de patrones almacenadas: ", self.contadorP)
         print("")
@@ -51,7 +61,6 @@ class lista_patrones():
             actual = self.primero
             tiempo_string = ""
             while actual:
-                #print(actual.patron.cadena_patron)
                 if actual.patron.cadena_patron == self.primero.patron.cadena_patron:
                     tiempo_string += str(actual.patron.tiempo) + ","
                 actual = actual.siguiente

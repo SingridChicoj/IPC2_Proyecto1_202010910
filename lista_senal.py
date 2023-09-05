@@ -12,7 +12,7 @@ class lista_senal:
     
     def insertar_dato(self, senal):
         if self.primero is None:
-            self.primero = nodo_senal(senal= senal)
+            self.primero = nodo_senal(senal = senal)
             self.contador_senal += 1
             return
         actual = self.primero
@@ -20,6 +20,16 @@ class lista_senal:
             actual = actual.siguiente
         actual.siguiente = nodo_senal(senal = senal)
         self.contador_senal += 1
+
+    def clear(self):
+        if self.primero is not None:
+            self.primero = None
+            #self.primero = nodo_senal(senal = senal)
+            return
+        actual = self.primero
+        while actual is None:
+            actual = None
+        self.contador_senal = 0
 
     def recorrer_imprimir(self):
         print("Total de senales almacenadas: ", self.contador_senal)
@@ -44,7 +54,7 @@ class lista_senal:
     def grafica_listaO(self):
         actual = self.primero
         while actual != None:
-            actual.senal.Ldatos.grafica(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
+            actual.senal.Ldatos.graficaO(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
             actual = actual.siguiente
     
     def grafica_listaP(self):
@@ -52,21 +62,23 @@ class lista_senal:
         while actual != None:
             actual.senal.Lpatrones.grafica(actual.senal.nombre, str(actual.senal.tiempo), str(actual.senal.amplitud))
             actual = actual.siguiente
-    
+
     def grafica_listaR(self):
         actual = self.primero
         while actual != None:
             actualLgrupo = actual.senal.Lgrupo.primero
             while actualLgrupo != None:
-                actualLgrupo.grupo.grafica(actualLgrupo.grupo.ngrupo, str(actualLgrupo.grupo.el_grupo), str(actualLgrupo.grupo.cadena_grupo))
+                actual.senal.Lgrupo.graficaR(str(actualLgrupo.grupo.ngrupo), str(actualLgrupo.grupo.el_grupo), str(actualLgrupo.grupo.cadena_grupo))
+                actualLgrupo = actualLgrupo.siguiente
             actual = actual.siguiente
 
+    
     def calcular_patrones(self, nombre_senal):
         actual = self.primero
         while actual != None:
             if actual.senal.nombre == nombre_senal:
                 actual.senal.PatronesTiempo = actual.senal.Lpatrones.devolver_patrones_tiempo(actual.senal.PatronesTiempo)
-                #actual.senal.PatronesTiempo.recorrer_imprimir()
+                actual.senal.PatronesTiempo.recorrer_imprimir()
                 lista_patrones_temporal = actual.senal.PatronesTiempo
                 grupos_sin_analizar = lista_patrones_temporal.coincidencias()
                 print(grupos_sin_analizar)
@@ -89,7 +101,7 @@ class lista_senal:
                 return
             actual = actual.siguiente
         print ("No se encontró la carcel")
-        
+
 
     def escritura_xml(self):
         mis_senales = ET.Element("senalesReducidas")
@@ -128,3 +140,31 @@ class lista_senal:
             else:
                 element.tail = '\n' + indent * (level - 1)
             cola[0:0] = hijos
+    
+    '''def inicializar(self):
+        #if self.primero is
+        actual = self.primero
+        prev = None
+        while actual is not None:
+            prev = actual
+            actual = actual.siguiente
+        if actual is None:
+            return
+        prev.siguiente = actual.siguiente
+    
+    def inicializar_Mio(self, senal):
+        self.primero = nodo_senal(senal = senal)
+        if self.primero is not None and self.primero.senal.Ldatos == senal:
+            self.primero = self.primero.siguiente
+            return
+        actual = self.primero
+        anterior = None
+
+        while actual is not None and actual.senal.Ldatos != senal:
+            anterior = actual
+            actual = actual.siguiente
+
+        if actual is None:
+            return
+        
+        anterior.siguiente = actual.siguiente'''

@@ -1,4 +1,5 @@
 from nodo_grupo import nodo_grupo
+from dato import dato
 
 #Importaciones
 import sys
@@ -31,11 +32,21 @@ class lista_grupos():
             actual = actual.siguiente
         print("------------------------------------------------------")
     
-    def grafica(self, nombre_senal, elgrupo, cad_grupo):
+    def clear(self):
+        if self.primero is not None:
+            self.primero = None
+            return
+        actual = self.primero
+        while actual is None:
+            actual = None
+        self.contadorG = 0
+
+    def graficaR(self, nombre_senal, ngrupo, amplitud):
+        nombre_senal = "Matriz Reducida"
         f = open('bb.dot', 'w')
         #Estilo del grafo
         text = """
-                digraph G {"tiempo = """ + elgrupo + """", "Amplitud = """ + cad_grupo +""""->" """+ nombre_senal+""""
+                digraph G {"A = """ + amplitud + """", "g = """ + ngrupo +""""->" """+ nombre_senal+""""
                 bgcolor="#3990C4" style="filled" subgraph cluster1{fillcolor = "blue:red" style="filled"
                 node [shape=circle fillcolor="gold:brown" style="radial" gradientangle=180]
                 a0 [ label=<
@@ -55,8 +66,7 @@ class lista_grupos():
                 fila_inicial = True
                 #Abrir la fila
                 text += """<TR>"""
-                text += """<TD border = "3" bgcolor="pink"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
-            else: 
+                text += """<TD border = "3" bgcolor="pink"  gradientangle="315">"""+"g="+str(actual.grupo.ngrupo)+"  (t ="+str(actual.grupo.el_grupo)+")"+"""</TD>\n"""
                 text += """<TD border = "3" bgcolor="gray"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
             actual = actual.siguiente
         text += """</TR></TABLE>>];
@@ -66,4 +76,4 @@ class lista_grupos():
         f.close()
         os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
         os.system('dot -Tpng bb.dot -o grafo.png')
-        print("Terminado")
+        print("Terminado")    

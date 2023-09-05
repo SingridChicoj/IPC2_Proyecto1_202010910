@@ -18,7 +18,6 @@ class lista_datos:
             return
         #Temporal para recorrer nuestra lista
         actual = self.primero
-
         #Ejecuta el ciclo, mientras actual.siguiente exista
         while actual.siguiente:
             actual = actual.siguiente
@@ -52,8 +51,20 @@ class lista_datos:
             print("T: ", actual.dato.time, "A: ", actual.dato.amplitude, "Numero: ", actual.dato.numero)
             actual = actual.siguiente
         print("------------------------------------------------------")
+    
 
-    def grafica(self, nombre_senal, tiempo, amplitud):
+    def clear(self):
+        if self.primero is not None:
+            self.primero = None
+            return
+        actual = self.primero
+        while actual is None:
+            actual = actual
+        actual = None
+        self.contador_datos = 0
+    
+
+    def graficaO(self, nombre_senal, tiempo, amplitud):
         f = open('bb.dot', 'w')
         #Estilo del grafo
         text = """
@@ -88,7 +99,7 @@ class lista_datos:
         f.close()
         os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
         os.system('dot -Tpng bb.dot -o grafo.png')
-        print("Terminado")
+        print("Terminado")    
 
     def devolver_patrones_tiempo(self, PatronesTiempo):
         actual = self.primero

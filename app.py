@@ -21,6 +21,17 @@ lista_datos_patrones_temporal = lista_datos()
 lista_patrones_temporal = lista_patrones()
 lista_grupos_temporal = lista_grupos()
 
+
+'''def inicializar_datos():
+    lista_senales_temporal.clear()
+    lista_datos_temporal.clear()
+    lista_datos_patrones_temporal.clear()
+
+    lista_patrones_temporal.clear()
+    lista_grupos_temporal.clear()'''
+
+
+
 def cargar():
     #Abrir xml
     ruta = askopenfilename()
@@ -122,6 +133,7 @@ def menu():
                     #lista_senales_temporal.grafica_listaR()
                     menu()
             elif entrada == "6":
+                #inicializar_datos()
                 print("Reiniciado")
                 menu()
             else:
@@ -129,11 +141,11 @@ def menu():
                 entrada = ""
                 menu()
 
-menu()
+#menu()
 cargar()
 #lista_senales_temporal.recorrer_imprimir_patrones()
 #lista_senales_temporal.grafica_listaO()
 #lista_senales_temporal.grafica_listaP()
-lista_senales_temporal.calcular_patrones("Prueba1")
-lista_senales_temporal.escritura_xml()
-#lista_senales_temporal.grafica_listaR()
+lista_senales_temporal.calcular_patrones("Señal Facilita")
+#lista_senales_temporal.escritura_xml()
+lista_senales_temporal.grafica_listaR()
