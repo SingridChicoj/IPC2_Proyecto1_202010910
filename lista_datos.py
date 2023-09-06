@@ -89,9 +89,9 @@ class lista_datos:
                 fila_inicial = True
                 #Abrir la fila
                 text += """<TR>"""
-                text += """<TD border = "2" bgcolor="#c9d2f5"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
+                text += """<TD border = "1" bgcolor="#c9d2f5"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
             else: 
-                text += """<TD border = "2" bgcolor="#e5f3ee"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
+                text += """<TD border = "1" bgcolor="#e5f3ee"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
             actual = actual.siguiente
         text += """</TR></TABLE>>];
                 }

@@ -21,6 +21,7 @@ lista_datos_patrones_temporal = lista_datos()
 lista_patrones_temporal = lista_patrones()
 lista_grupos_temporal = lista_grupos()
 
+nombreS = ''
 
 def cargar():
     #Abrir xml
@@ -38,7 +39,7 @@ def cargar():
         t_senal = senal_temporal.get('t')
         A_senal = senal_temporal.get('A')
         #print(nombre_senal, t_senal, A_senal)
-        #Inicializar nuestras listas)
+        #Inicializar nuestras listas
         for dato_senal in senal_temporal.findall('dato'):
             tiempo_dato = dato_senal.get('t')
             ampli_dato = dato_senal.get('A')
@@ -55,7 +56,6 @@ def cargar():
                 lista_datos_patrones_temporal.insertar_dato_ordenado(nuevod)
         lista_senales_temporal.insertar_dato(senal(nombre_senal, t_senal, A_senal,
                                     lista_datos_temporal, lista_datos_patrones_temporal, lista_patrones_temporal, lista_grupos_temporal))
-
 
 def menu():
     print(jump)
@@ -92,7 +92,7 @@ def menu():
                 print("Calculando la matriz binaria")
                 lista_senales_temporal.recorrer_imprimir_patrones()
                 print("Mostrando grupos")
-                lista_senales_temporal.calcular_patrones("Prueba1")
+                lista_senales_temporal.calcular_patrones(nombreS)
                 entrada = ""
                 menu()
             elif entrada == "3":
@@ -130,6 +130,7 @@ def menu():
                     opcion = ""
                     menu()
             elif entrada == "6":
+                lista_senales_temporal.recorrer_imprimir()
                 print("Reiniciado")
                 menu()
             else:

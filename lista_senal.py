@@ -4,7 +4,6 @@ from grupo import grupo
 #Importaciones
 import xml.etree.ElementTree as ET
 
-
 class lista_senal:
     def __init__(self):
         self.primero = None
@@ -67,17 +66,15 @@ class lista_senal:
     def grafica_listaR(self):
         actual = self.primero
         while actual != None:
-            actualLgrupo = actual.senal.Lgrupo.primero
-            while actualLgrupo != None:
-                actual.senal.Lgrupo.graficaR(actual.senal.nombre, str(actual.senal.amplitud))
-                actualLgrupo = actualLgrupo.siguiente
+            actual.senal.Lgrupo.graficaR(actual.senal.nombre, str(actual.senal.amplitud))
             actual = actual.siguiente
 
     
     def calcular_patrones(self, nombre_senal):
+        nombreS = nombre_senal
         actual = self.primero
         while actual != None:
-            if actual.senal.nombre == nombre_senal:
+            if actual.senal.nombre == nombre_senal or nombre_senal == nombreS:
                 actual.senal.PatronesTiempo = actual.senal.Lpatrones.devolver_patrones_tiempo(actual.senal.PatronesTiempo)
                 actual.senal.PatronesTiempo.recorrer_imprimir()
                 lista_patrones_temporal = actual.senal.PatronesTiempo
@@ -125,9 +122,9 @@ class lista_senal:
             my_data = str(my_data)
             self.pretty(mis_senales)
             arbol_xml = ET.ElementTree(mis_senales)
-            ruta = input("Escribir una ruta especifica: ")
-            arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
-            #arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
+            #ruta = input("Escribir una ruta especifica: ")
+            #arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
+            arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
     
     def pretty(self, element, indent = '    '):
         cola = [(0, element)]
