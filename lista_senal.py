@@ -122,9 +122,9 @@ class lista_senal:
             my_data = str(my_data)
             self.pretty(mis_senales)
             arbol_xml = ET.ElementTree(mis_senales)
-            #ruta = input("Escribir una ruta especifica: ")
-            #arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
-            arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
+            ruta = input("Escribir una ruta especifica: ")
+            arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
+            #arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
     
     def pretty(self, element, indent = '    '):
         cola = [(0, element)]
