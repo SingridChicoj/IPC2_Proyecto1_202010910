@@ -60,7 +60,8 @@ class lista_datos:
         actual = self.primero
         while actual is None:
             actual = actual
-        actual = None
+            actual = None
+            return
         self.contador_datos = 0
     
 
@@ -69,11 +70,11 @@ class lista_datos:
         #Estilo del grafo
         text = """
                 digraph G {"tiempo = """ + tiempo + """", "Amplitud = """ + amplitud +""""->" """+ nombre_senal+""""
-                bgcolor="#3990C4" style="filled" subgraph cluster1{fillcolor = "blue:red" style="filled"
-                node [shape=circle fillcolor="gold:brown" style="radial" gradientangle=180]
+                bgcolor="#decfee" subgraph cluster1{fillcolor = "#9fdbe6:#7678bc" style="filled" 
+                node [shape=rectangle fillcolor="#ca8bf5:#3e4160" gradientangle=90]
                 a0 [ label=<
                 <TABLE border="0" cellspacing="10" cellpadding="10" 
-                style="rounded" bgcolor="blue:red" gradientangle="315">\n"""
+                bgcolor="#9fdbe6:#7678bc" gradientangle="315">\n"""
         actual = self.primero
         salto_linea_fila = actual.dato.time #Inicia en 1
         fila_inicial = False
@@ -88,9 +89,9 @@ class lista_datos:
                 fila_inicial = True
                 #Abrir la fila
                 text += """<TR>"""
-                text += """<TD border = "3" bgcolor="pink"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
+                text += """<TD border = "2" bgcolor="#c9d2f5"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
             else: 
-                text += """<TD border = "3" bgcolor="gray"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
+                text += """<TD border = "2" bgcolor="#e5f3ee"  gradientangle="315">"""+str(actual.dato.numero)+"""</TD>\n"""
             actual = actual.siguiente
         text += """</TR></TABLE>>];
                 }
@@ -98,7 +99,7 @@ class lista_datos:
         f.write(text) 
         f.close()
         os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
-        os.system('dot -Tpng bb.dot -o grafo.png')
+        os.system('dot -Tpng bb.dot -o grafo_original.png')
         print("Terminado")    
 
     def devolver_patrones_tiempo(self, PatronesTiempo):

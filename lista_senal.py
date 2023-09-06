@@ -24,11 +24,12 @@ class lista_senal:
     def clear(self):
         if self.primero is not None:
             self.primero = None
-            #self.primero = nodo_senal(senal = senal)
             return
         actual = self.primero
         while actual is None:
+            actual = actual
             actual = None
+            return
         self.contador_senal = 0
 
     def recorrer_imprimir(self):
@@ -68,7 +69,7 @@ class lista_senal:
         while actual != None:
             actualLgrupo = actual.senal.Lgrupo.primero
             while actualLgrupo != None:
-                actual.senal.Lgrupo.graficaR(str(actualLgrupo.grupo.ngrupo), str(actualLgrupo.grupo.el_grupo), str(actualLgrupo.grupo.cadena_grupo))
+                actual.senal.Lgrupo.graficaR(actual.senal.nombre, str(actual.senal.amplitud))
                 actualLgrupo = actualLgrupo.siguiente
             actual = actual.siguiente
 
@@ -124,9 +125,9 @@ class lista_senal:
             my_data = str(my_data)
             self.pretty(mis_senales)
             arbol_xml = ET.ElementTree(mis_senales)
-            #ruta = input("Escribir una ruta especifica: ")
-            #arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
-            arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
+            ruta = input("Escribir una ruta especifica: ")
+            arbol_xml.write(ruta, encoding = "UTF-8", xml_declaration = True)
+            #arbol_xml.write('salida.xml', encoding = "UTF-8", xml_declaration = True)
     
     def pretty(self, element, indent = '    '):
         cola = [(0, element)]
@@ -140,31 +141,3 @@ class lista_senal:
             else:
                 element.tail = '\n' + indent * (level - 1)
             cola[0:0] = hijos
-    
-    '''def inicializar(self):
-        #if self.primero is
-        actual = self.primero
-        prev = None
-        while actual is not None:
-            prev = actual
-            actual = actual.siguiente
-        if actual is None:
-            return
-        prev.siguiente = actual.siguiente
-    
-    def inicializar_Mio(self, senal):
-        self.primero = nodo_senal(senal = senal)
-        if self.primero is not None and self.primero.senal.Ldatos == senal:
-            self.primero = self.primero.siguiente
-            return
-        actual = self.primero
-        anterior = None
-
-        while actual is not None and actual.senal.Ldatos != senal:
-            anterior = actual
-            actual = actual.siguiente
-
-        if actual is None:
-            return
-        
-        anterior.siguiente = actual.siguiente'''

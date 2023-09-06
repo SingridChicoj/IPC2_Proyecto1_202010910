@@ -22,16 +22,6 @@ lista_patrones_temporal = lista_patrones()
 lista_grupos_temporal = lista_grupos()
 
 
-'''def inicializar_datos():
-    lista_senales_temporal.clear()
-    lista_datos_temporal.clear()
-    lista_datos_patrones_temporal.clear()
-
-    lista_patrones_temporal.clear()
-    lista_grupos_temporal.clear()'''
-
-
-
 def cargar():
     #Abrir xml
     ruta = askopenfilename()
@@ -65,6 +55,7 @@ def cargar():
                 lista_datos_patrones_temporal.insertar_dato_ordenado(nuevod)
         lista_senales_temporal.insertar_dato(senal(nombre_senal, t_senal, A_senal,
                                     lista_datos_temporal, lista_datos_patrones_temporal, lista_patrones_temporal, lista_grupos_temporal))
+
 
 def menu():
     print(jump)
@@ -127,13 +118,18 @@ def menu():
                 print(jump)
                 if opcion == "1":
                     lista_senales_temporal.grafica_listaO()
+                    opcion = ""
                     menu()
                 elif opcion == "2":
-                    print("Proximamente")
-                    #lista_senales_temporal.grafica_listaR()
+                    print("No esta bien completo :c")
+                    lista_senales_temporal.grafica_listaR()
+                    opcion = ""
+                    menu()
+                else:
+                    print("Seleccione una opcion correcta")
+                    opcion = ""
                     menu()
             elif entrada == "6":
-                #inicializar_datos()
                 print("Reiniciado")
                 menu()
             else:
@@ -141,11 +137,11 @@ def menu():
                 entrada = ""
                 menu()
 
-#menu()
-cargar()
+menu()
+#cargar()
 #lista_senales_temporal.recorrer_imprimir_patrones()
 #lista_senales_temporal.grafica_listaO()
 #lista_senales_temporal.grafica_listaP()
-lista_senales_temporal.calcular_patrones("Señal Facilita")
+#lista_senales_temporal.calcular_patrones("Señal Facilita")
 #lista_senales_temporal.escritura_xml()
-lista_senales_temporal.grafica_listaR()
+#lista_senales_temporal.grafica_listaR()

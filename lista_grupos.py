@@ -38,27 +38,28 @@ class lista_grupos():
             return
         actual = self.primero
         while actual is None:
+            actual = actual
             actual = None
+            return
         self.contadorG = 0
 
-    def graficaR(self, nombre_senal, ngrupo, amplitud):
-        nombre_senal = "Matriz Reducida"
+    def graficaR(self, nombre_senal, amplitud):
         f = open('bb.dot', 'w')
         #Estilo del grafo
         text = """
-                digraph G {"A = """ + amplitud + """", "g = """ + ngrupo +""""->" """+ nombre_senal+""""
-                bgcolor="#3990C4" style="filled" subgraph cluster1{fillcolor = "blue:red" style="filled"
-                node [shape=circle fillcolor="gold:brown" style="radial" gradientangle=180]
+                digraph G {"A = """ + amplitud +""""->" """+ nombre_senal+ "\n Reducida"""+""""
+                bgcolor="#decfee" subgraph cluster1{fillcolor = "#9fdbe6:#7678bc" style="filled" 
+                node [shape=rectangle fillcolor="#ca8bf5:#3e4160" gradientangle=90]
                 a0 [ label=<
                 <TABLE border="0" cellspacing="10" cellpadding="10" 
-                style="rounded" bgcolor="blue:red" gradientangle="315">\n"""
+                bgcolor="#9fdbe6:#7678bc" gradientangle="315">\n"""
         actual = self.primero
-        salto_linea_fila = actual.grupo.el_grupo #Inicia en 1
+        salto_linea_fila = actual.grupo.ngrupo #Inicia en 1
         fila_inicial = False
         while actual != None:
             #Si mi fila actual es diferente a la que viene
-            if salto_linea_fila != actual.grupo.el_grupo:
-                salto_linea_fila = actual.grupo.el_grupo
+            if salto_linea_fila != actual.grupo.ngrupo:
+                salto_linea_fila = actual.grupo.ngrupo
                 fila_inicial = False
                 #Cerramos la fila
                 text += """</TR>\n"""
@@ -66,8 +67,8 @@ class lista_grupos():
                 fila_inicial = True
                 #Abrir la fila
                 text += """<TR>"""
-                text += """<TD border = "3" bgcolor="pink"  gradientangle="315">"""+"g="+str(actual.grupo.ngrupo)+"  (t ="+str(actual.grupo.el_grupo)+")"+"""</TD>\n"""
-                text += """<TD border = "3" bgcolor="gray"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
+                text += """<TD border = "2" bgcolor="#c9d2f5"  gradientangle="315">"""+"g="+str(actual.grupo.ngrupo)+"  (t ="+str(actual.grupo.el_grupo)+")"+"""</TD>\n"""
+                text += """<TD border = "2" bgcolor="#e5f3ee"  gradientangle="315">"""+str(actual.grupo.cadena_grupo)+"""</TD>\n"""
             actual = actual.siguiente
         text += """</TR></TABLE>>];
                 }
@@ -75,5 +76,5 @@ class lista_grupos():
         f.write(text) 
         f.close()
         os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
-        os.system('dot -Tpng bb.dot -o grafo.png')
+        os.system('dot -Tpng bb.dot -o grafo_reducida.png')
         print("Terminado")    

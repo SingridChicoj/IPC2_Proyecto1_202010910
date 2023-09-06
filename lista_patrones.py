@@ -23,7 +23,9 @@ class lista_patrones():
             return
         actual = self.primero
         while actual is None:
+            actual = actual
             actual = None
+            return
         self.contadorP = 0
     
 
