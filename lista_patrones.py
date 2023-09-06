@@ -5,6 +5,10 @@ class lista_patrones():
     def __init__(self):
         self.primero = None
         self.contadorP = 0
+    
+    def clear(self):
+        self.primero = None
+        self.contadorP = 0
 
     def insertar_dato(self, patron):
         if self.primero is None:
@@ -16,18 +20,6 @@ class lista_patrones():
             actual = actual.siguiente
         actual.siguiente = nodo_patron(patron=patron)
         self.contadorP += 1
-
-    def clear(self):
-        if self.primero is not None:
-            self.primero = None
-            return
-        actual = self.primero
-        while actual is None:
-            actual = actual
-            actual = None
-            return
-        self.contadorP = 0
-    
 
     def recorrer_imprimir(self):
         print("Total de patrones almacenadas: ", self.contadorP)

@@ -9,6 +9,10 @@ class lista_senal:
         self.primero = None
         self.contador_senal = 0
     
+    def clear(self):
+        self.primero = None
+        self.contador_senal = 0
+    
     def insertar_dato(self, senal):
         if self.primero is None:
             self.primero = nodo_senal(senal = senal)
@@ -19,17 +23,6 @@ class lista_senal:
             actual = actual.siguiente
         actual.siguiente = nodo_senal(senal = senal)
         self.contador_senal += 1
-
-    def clear(self):
-        if self.primero is not None:
-            self.primero = None
-            return
-        actual = self.primero
-        while actual is None:
-            actual = actual
-            actual = None
-            return
-        self.contador_senal = 0
 
     def recorrer_imprimir(self):
         print("Total de senales almacenadas: ", self.contador_senal)

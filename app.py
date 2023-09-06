@@ -12,6 +12,7 @@ from lista_patrones import lista_patrones
 from lista_grupos import lista_grupos
 
 jump = "------------------------------------------------------"
+nombreS = ''
 
 #Generalizando listas
 lista_senales_temporal = lista_senal()
@@ -21,7 +22,11 @@ lista_datos_patrones_temporal = lista_datos()
 lista_patrones_temporal = lista_patrones()
 lista_grupos_temporal = lista_grupos()
 
-nombreS = ''
+def inicializar():
+    lista_senales_temporal.clear()
+    lista_datos_temporal.clear()
+    lista_patrones_temporal.clear()
+    lista_grupos_temporal.clear()
 
 def cargar():
     #Abrir xml
@@ -130,9 +135,15 @@ def menu():
                     opcion = ""
                     menu()
             elif entrada == "6":
-                lista_senales_temporal.recorrer_imprimir()
+                inicializar()
                 print("Reiniciado")
-                menu()
+                opcion2 = input("Desea ver: ")
+                if opcion2 == "Si":
+                    lista_senales_temporal.recorrer_imprimir()
+                    opcion2 = ""
+                    menu()
+                elif opcion2 == "No":
+                    menu()
             else:
                 print("Seleccione una opcion correcta")
                 entrada = ""

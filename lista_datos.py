@@ -10,6 +10,10 @@ class lista_datos:
         self.primero = None
         self.contador_datos = 0
 
+    def clear(self):
+        self.primero = None
+        self.contador_datos = 0
+
     def insertar_dato(self, dato):
         #Si el primer nodo es nulo
         if self.primero is None:
@@ -51,19 +55,7 @@ class lista_datos:
             print("T: ", actual.dato.time, "A: ", actual.dato.amplitude, "Numero: ", actual.dato.numero)
             actual = actual.siguiente
         print("------------------------------------------------------")
-    
-
-    def clear(self):
-        if self.primero is not None:
-            self.primero = None
-            return
-        actual = self.primero
-        while actual is None:
-            actual = actual
-            actual = None
-            return
-        self.contador_datos = 0
-    
+        
 
     def graficaO(self, nombre_senal, tiempo, amplitud):
         f = open('bb.dot', 'w')

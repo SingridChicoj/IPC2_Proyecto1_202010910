@@ -9,6 +9,10 @@ class lista_grupos():
     def __init__(self):
         self.primero = None
         self.contadorG = 0
+    
+    def clear(self):
+        self.primero = None
+        self.contadorG = 0
 
     def insertar_dato(self, grupo):
         if self.primero is None:
@@ -32,16 +36,6 @@ class lista_grupos():
             actual = actual.siguiente
         print("------------------------------------------------------")
     
-    def clear(self):
-        if self.primero is not None:
-            self.primero = None
-            return
-        actual = self.primero
-        while actual is None:
-            actual = actual
-            actual = None
-            return
-        self.contadorG = 0
 
     def graficaR(self, nombre_senal, amplitud):
         f = open('bb.dot', 'w')
